@@ -41,7 +41,7 @@ class ExtractCommand extends ContainerAwareCommand
             //Do Magic!!!
             // On récupère le service
     		$extractorService = $this->getContainer()->get('vdm_extractor.extractorservice');
-
+			$output->writeln($extractorService->extract($limit));
 
         } else {
             $text = 'You\'re supposed to put a number at the end of the request';
