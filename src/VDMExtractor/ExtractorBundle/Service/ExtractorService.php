@@ -27,9 +27,9 @@ class ExtractorService
 	 * Default Constructor
 	 *
 	 */
-    public function __construct()
+    public function __construct(\Doctrine\ORM\EntityManager $em)
     {
-    	$entityManager=$this->getDoctrine()->getManager();
+    	$this->entityManager = $em;
     }
 
 	/**
@@ -75,14 +75,15 @@ class ExtractorService
 			$page++;
 		}
 
-		$postString = '';
+
 		foreach ($posts as $post) {
 			// Persist to database
-			$this->entityManager->persist($post);
-			$postString.= ', '.$post->getContent();
+			if(!$this->entityManager->find('VDMExtractor\ExtractorBundle\Entity\Post', $post->getId())){
+				$this->entityManager->persist($post);
+			}
+
 		}
 		$this->entityManager->flush();
-		return $postString;
 	}
 
 	/**
