@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use \DateTime;
 
 /**
- * Post Entity
+ * This class represents a post
  *
  * @ORM\Entity
  * @ORM\Table(name="post")

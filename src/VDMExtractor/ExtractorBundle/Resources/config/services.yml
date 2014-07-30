@@ -2,5 +2,5 @@ parameters:
 #    vdm_extractor_extractor.example.class: VDMExtractor\ExtractorBundle\Example
 
 services:
-    vdm_extractor_extractor.extractorservice:
+    vdm_extractor.extractorservice:
         class: VDMExtractor\ExtractorBundle\Service\ExtractorService
