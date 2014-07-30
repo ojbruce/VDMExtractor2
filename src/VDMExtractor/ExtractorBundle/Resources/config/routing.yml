@@ -1,0 +1,3 @@
+vdm_extractor_extractor_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: VDMExtractorExtractorBundle:Default:index }

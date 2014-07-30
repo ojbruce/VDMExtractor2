@@ -1,0 +1,7 @@
+parameters:
+#    vdm_extractor_extractor.example.class: VDMExtractor\ExtractorBundle\Example
+
+services:
+#    vdm_extractor_extractor.example:
+#        class: %vdm_extractor_extractor.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
