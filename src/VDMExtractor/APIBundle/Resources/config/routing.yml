@@ -2,14 +2,6 @@ vdm_extractor_api_posts:
     path:       /posts
     defaults:   { _controller: VDMExtractorAPIBundle:API:get}
 
-vdm_extractor_api_posts_author:
-    path:       /posts{author}
-    defaults:   { _controller: VDMExtractorAPIBundle:API:get}
-    requirements:
-        author: \?author=\w+   
-
-
-
 vdm_extractor_api_post:
     path:       /posts/{id}
     defaults:   { _controller: VDMExtractorAPIBundle:API:getUnique}
