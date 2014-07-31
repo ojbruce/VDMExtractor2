@@ -1,4 +1,8 @@
+vdm_extractor_api:
+    resource: "@VDMExtractorAPIBundle/Resources/config/routing.yml"
+    prefix:   /
+
 vdm_extractor_extractor:
     resource: "@VDMExtractorExtractorBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /api
 

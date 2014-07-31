@@ -37,9 +37,7 @@ class ExtractCommand extends ContainerAwareCommand
         $limit = $input->getArgument('limit');
 
         if (!$limit) {
-
             $limit = 200; 
-
         }
 
         // Do Magic!!!

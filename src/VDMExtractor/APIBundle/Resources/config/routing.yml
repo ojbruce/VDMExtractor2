@@ -1,0 +1,13 @@
+vdm_extractor_api_homepage:
+    path:       /
+    defaults:   { _controller: VDMExtractorAPIBundle:API:index }
+
+vdm_extractor_api_posts:
+    path:       /posts
+    defaults:   { _controller: VDMExtractorAPIBundle:API:get}
+
+vdm_extractor_api_posts:
+    path:       /posts/{id}
+    defaults:   { _controller: VDMExtractorAPIBundle:API:getUnique}    
+    requirements:
+        id:  \d*
