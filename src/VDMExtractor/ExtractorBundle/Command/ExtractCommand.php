@@ -17,10 +17,10 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 class ExtractCommand extends ContainerAwareCommand
 {
 
-	/**
+    /**
      * {@inheritdoc}
      */
-	protected function configure()
+    protected function configure()
     {
         $this
             ->setName('extract:vdm')
@@ -32,7 +32,7 @@ class ExtractCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
-	protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $limit = $input->getArgument('limit');
 

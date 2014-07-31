@@ -15,10 +15,10 @@ use \DateTime;
  */
 class ExtractorService 
 {
-	
+
 	/** Url of the website */
 	protected $VDMUrl = 'http://www.viedemerde.fr/?page=';
-	
+
 	/** EntityManager Doctrine entity manager */
 	protected $entityManager;
 
@@ -27,10 +27,10 @@ class ExtractorService
 	 * Default Constructor
 	 *
 	 */
-    public function __construct(\Doctrine\ORM\EntityManager $em)
-    {
-    	$this->entityManager = $em;
-    }
+	public function __construct(\Doctrine\ORM\EntityManager $em)
+	{
+		$this->entityManager = $em;
+	}
 
 	/**
 	 * Collect $limit last posts from VDM website
@@ -165,7 +165,7 @@ class ExtractorService
 
 		return $posts;
 	}
-	
+
 	/**
 	 * Setter for serviceLocator attribut
 	 * @param $service the service locator
@@ -176,7 +176,7 @@ class ExtractorService
 		$this->entityManager  = $service->get('doctrine.entitymanager.orm_default');
 		return $this;
 	}
-	
+
 	/**
 	 * Getter of serviceLocator attribut
 	 * @return $service the service locator
@@ -186,5 +186,5 @@ class ExtractorService
 		return $this->serviceLocator;
 	}
 
-	
+
 }
