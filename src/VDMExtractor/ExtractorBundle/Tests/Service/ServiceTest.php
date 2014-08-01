@@ -2,7 +2,7 @@
 
 namespace VDMExtractor\ExtractorBundle\Tests\Service;
 
-use EVDMExtractor\ExtractorBundle\Service\ExtractorService;
+use VDMExtractor\ExtractorBundle\Service\ExtractorService;
 
 use PHPUnit_Framework_TestCase;
 
