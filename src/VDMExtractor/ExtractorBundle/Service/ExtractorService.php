@@ -94,7 +94,7 @@ class ExtractorService
 	public function extractAuthor($nodePostText)
 	{
 		$patternAuthor = "- par ([a-zA-Z0-9\']+([a-zA-Z\_0-9\.-\']*)) (\(homme\)|\(femme\))?";
-		ereg($patternAuthor, $nodePostText, $matches); 
+		$preg_match($patternAuthor, $nodePostText, $matches); 
 		return $matches[1];
 	}
 
@@ -106,7 +106,7 @@ class ExtractorService
 	public function extractDate($nodePostText)
 	{
 		$patternDate = "([0-9-]{2}/[0-9-]{2}/[0-9-]{4})";
-		ereg($patternDate, $nodePostText, $matches); 
+		$preg_match($patternDate, $nodePostText, $matches); 
 		return $matches[1];
 	}
 
@@ -118,7 +118,7 @@ class ExtractorService
 	public function extractTime($nodePostText)
 	{
 		$patternTime = "([0-9-]{2}:[0-9-]{2}) -";
-		ereg($patternTime, $nodePostText, $matches); 
+		$preg_match($patternTime, $nodePostText, $matches); 
 		return $matches[1];
 	}
 
@@ -164,26 +164,6 @@ class ExtractorService
 		}
 
 		return $posts;
-	}
-
-	/**
-	 * Setter for serviceLocator attribut
-	 * @param $service the service locator
-	 */
-	public function setServiceLocator(ServiceLocatorInterface $service)
-	{
-		$this->serviceLocator = $service;
-		$this->entityManager  = $service->get('doctrine.entitymanager.orm_default');
-		return $this;
-	}
-
-	/**
-	 * Getter of serviceLocator attribut
-	 * @return $service the service locator
-	 */
-	public function getServiceLocator()
-	{
-		return $this->serviceLocator;
 	}
 
 
