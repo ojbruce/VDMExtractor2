@@ -60,7 +60,7 @@ class ExtractorService
 
 				$this
 					->logger
-					->info('VDMExtractor\ExtractorBundle\Service:extract nodes : ' 
+					->info('VDMExtractor\ExtractorBundle\Service:extract nodesContent : ' 
 						.$nodePost->textContent);
 
 				if (count($posts) >= $limit) {
