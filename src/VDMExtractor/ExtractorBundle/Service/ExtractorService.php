@@ -50,7 +50,7 @@ class ExtractorService
 		while (count($posts) < $limit) {
 
 			$html = new \DOMDocument();
-			//TODO log error
+			// TODO ojbruce 08/2014 fix loadhtmlfile encoding
 			@$html->loadHTMLFile($this->VDMUrl . '' . $page . '');
 
 			$nodesPosts = $this->getDomNodePosts($html);
@@ -58,7 +58,10 @@ class ExtractorService
 
 			foreach ($nodesPosts as $nodePost) {
 
-				$this->logger->info('VDMExtractor\ExtractorBundle\Service:extract nodes : ' .$nodePost->textContent);
+				$this
+					->logger
+					->info('VDMExtractor\ExtractorBundle\Service:extract nodes : ' 
+						.$nodePost->textContent);
 
 				if (count($posts) >= $limit) {
 					continue;
@@ -154,7 +157,6 @@ class ExtractorService
 	public function extractContent($nodePostText)
 	{
 		$matches = preg_split('/ VDM/', $nodePostText);
-		
 		return $matches[0];
 	}
 
