@@ -6,3 +6,4 @@ services:
         class: VDMExtractor\ExtractorBundle\Service\ExtractorService
         arguments:
           entityManager: @doctrine.orm.entity_manager
+          logger : @monolog.logger

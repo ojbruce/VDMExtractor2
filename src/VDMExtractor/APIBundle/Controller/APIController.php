@@ -26,6 +26,9 @@ class APIController extends Controller
     public function getUniqueAction($id)
     {
 
+        $logger = $this->get('logger');
+        $logger->info('VDMExtractor\APIBundle\Controller:getUnique identifiant : ' .$id);
+
         /** Getting doctrine entity */
         $repository = $this->getDoctrine()
                            ->getManager()
@@ -39,6 +42,7 @@ class APIController extends Controller
         } else {
             $result   = ['success' => 'false']; 
         }
+
 
         return new Response(json_encode(array([
             'post' => $result
@@ -80,6 +84,9 @@ class APIController extends Controller
         }
 
         $queryDQL .= '1=1';
+
+        $logger = $this->get('logger');
+        $logger->info('VDMExtractor\APIBundle\Controller:get query : ' .$queryDQL);
 
         // Creating query
         $query = $em->createQuery(

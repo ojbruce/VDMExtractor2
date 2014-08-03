@@ -4,10 +4,12 @@ namespace VDMExtractor\ExtractorBundle\Service;
 
 
 use Doctrine\ORM\EntityManager;
+use Monolog\Logger;
+use \DateTime;
 
 use VDMExtractor\ExtractorBundle\Entity\Post;
 
-use \DateTime;
+
 
 /**
  * This class represents the module's service
@@ -22,14 +24,17 @@ class ExtractorService
 	/** EntityManager Doctrine entity manager */
 	protected $entityManager;
 
+	/** Instance of logger */
+ 	protected $logger;
 
 	/**
 	 * Default Constructor
 	 *
 	 */
-	public function __construct(\Doctrine\ORM\EntityManager $em)
+	public function __construct(\Doctrine\ORM\EntityManager $em, Logger $logger)
 	{
 		$this->entityManager = $em;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -45,11 +50,15 @@ class ExtractorService
 		while (count($posts) < $limit) {
 
 			$html = new \DOMDocument();
+			//TODO log error
 			@$html->loadHTMLFile($this->VDMUrl . '' . $page . '');
 
 			$nodesPosts = $this->getDomNodePosts($html);
+			
 
 			foreach ($nodesPosts as $nodePost) {
+
+				$this->logger->info('VDMExtractor\ExtractorBundle\Service:extract nodes : ' .$nodePost->textContent);
 
 				if (count($posts) >= $limit) {
 					continue;
@@ -93,9 +102,10 @@ class ExtractorService
 	 */
 	public function extractAuthor($nodePostText)
 	{
-		$patternAuthor = "- par ([a-zA-Z0-9\']+([a-zA-Z\_0-9\.-\']*)) (\(homme\)|\(femme\))?";
-		$preg_match($patternAuthor, $nodePostText, $matches); 
-		return $matches[1];
+		$patternAuthor = '/(- par) ([\w\-\' ]*) (\(homme\)|\(femme\))?/';
+		preg_match($patternAuthor, $nodePostText, $matches); 
+
+		return $matches[2];
 	}
 
 	/**
@@ -105,8 +115,9 @@ class ExtractorService
 	 */
 	public function extractDate($nodePostText)
 	{
-		$patternDate = "([0-9-]{2}/[0-9-]{2}/[0-9-]{4})";
-		$preg_match($patternDate, $nodePostText, $matches); 
+		$patternDate = "/([0-9]{2}\/[0-9]{2}\/[0-9]{4})/";
+		preg_match($patternDate, $nodePostText, $matches); 
+		
 		return $matches[1];
 	}
 
@@ -117,8 +128,9 @@ class ExtractorService
 	 */
 	public function extractTime($nodePostText)
 	{
-		$patternTime = "([0-9-]{2}:[0-9-]{2}) -";
-		$preg_match($patternTime, $nodePostText, $matches); 
+		$patternTime = "/([0-9-]{2}:[0-9-]{2}) \-/";
+		preg_match($patternTime, $nodePostText, $matches); 
+		
 		return $matches[1];
 	}
 
@@ -129,7 +141,8 @@ class ExtractorService
 	 */
 	public function extractContent($nodePostText)
 	{
-		$matches = split(' VDM', $nodePostText);
+		$matches = preg_split('/ VDM/', $nodePostText);
+		
 		return $matches[0];
 	}
 
