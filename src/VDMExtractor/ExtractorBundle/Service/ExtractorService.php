@@ -102,10 +102,19 @@ class ExtractorService
 	 */
 	public function extractAuthor($nodePostText)
 	{
-		$patternAuthor = '/(- par) ([\w\-\' ]*) (\(homme\)|\(femme\))?/';
+		print($nodePostText);
+		$patternAuthor = '/(- par) ([\w\-\'\. ]*) (\(homme\)|\(femme\))?/';
 		preg_match($patternAuthor, $nodePostText, $matches); 
+		print_r($matches);
 
-		return $matches[2];
+		$res = 'encoding error';
+		if(preg_match($patternAuthor, $nodePostText, $matches)){
+			$res = $matches[2];			
+		}
+
+		print($res);
+
+		return $res;
 	}
 
 	/**
