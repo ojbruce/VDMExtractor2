@@ -102,19 +102,14 @@ class ExtractorService
 	 */
 	public function extractAuthor($nodePostText)
 	{
-		print($nodePostText);
 		$patternAuthor = '/(- par) ([\w\-\'\. ]*) (\(homme\)|\(femme\))?/';
-		preg_match($patternAuthor, $nodePostText, $matches); 
-		print_r($matches);
 
-		$res = 'encoding error';
+		$author = 'error match';
 		if(preg_match($patternAuthor, $nodePostText, $matches)){
-			$res = $matches[2];			
+			$author = $matches[2];			
 		}
 
-		print($res);
-
-		return $res;
+		return $author;
 	}
 
 	/**
@@ -125,9 +120,13 @@ class ExtractorService
 	public function extractDate($nodePostText)
 	{
 		$patternDate = "/([0-9]{2}\/[0-9]{2}\/[0-9]{4})/";
-		preg_match($patternDate, $nodePostText, $matches); 
 		
-		return $matches[1];
+		$date = '00/00/0000';
+		if(preg_match($patternDate, $nodePostText, $matches)){
+			$date = $matches[1];
+		} 
+		
+		return $date;
 	}
 
 	/**
@@ -138,9 +137,13 @@ class ExtractorService
 	public function extractTime($nodePostText)
 	{
 		$patternTime = "/([0-9-]{2}:[0-9-]{2}) \-/";
-		preg_match($patternTime, $nodePostText, $matches); 
+
+		$time = '00:00';
+		if(preg_match($patternTime, $nodePostText, $matches)){
+			$time = $matches[1];
+		} 
 		
-		return $matches[1];
+		return $time;
 	}
 
 	/**
