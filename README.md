@@ -69,6 +69,7 @@ Tests
 Launch every test of the bundle
 
 ``` phpunit -c app src/VDMExtractor/ExtractorBundle/ ```
+
 ``` phpunit -c app src/VDMExtractor/APIBundle/ ```
 
 
