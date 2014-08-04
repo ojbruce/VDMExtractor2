@@ -63,6 +63,15 @@ To launch don't forget to start the server if not done:
 ``` http://host:port/api/posts/post_id ```
 
 
+Tests
+------
+
+Launch every test of the bundle
+
+``` phpunit -c app src/VDMExtractor/ExtractorBundle/ ```
+``` phpunit -c app src/VDMExtractor/APIBundle/ ```
+
+
 
 Powered by
 ----------
